@@ -7,7 +7,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import Logo from "../Logo";
 import { MenuIcon } from "lucide-react";
 
@@ -35,7 +35,18 @@ const Navbar = () => {
                   key={link.to}
                   className="capitalize text-sm md:text-base lg:text-lg font-medium hover:text-orange-500 hover:underline underline-offset-4"
                 >
-                  <Link to={link.to}>{link.label}</Link>
+                  <NavLink
+                    className={({ isActive, isPending }) =>
+                      isPending
+                        ? ""
+                        : isActive
+                        ? "text-orange-500 underline"
+                        : ""
+                    }
+                    to={link.to}
+                  >
+                    {link.label}
+                  </NavLink>
                 </li>
               ))}
             </ul>
