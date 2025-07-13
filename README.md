@@ -1,69 +1,104 @@
-# React + TypeScript + Vite
+# 📚 Minimal Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal, modern **Library Management System** built with **React**, **TypeScript**, **Redux Toolkit Query**, and **Tailwind CSS + shadcn/ui**. This project focuses on **core functionality** with clean UI and smooth UX — no authentication, no categories, no payments — just books and borrowing, done right.
 
-Currently, two official plugins are available:
+🚀 **Live Demo**  
+👉 [minimal-library-management-system-c-omega.vercel.app](https://minimal-library-management-system-c-omega.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## ✨ Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 📖 Book Management
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Book List Table**  
+  Displays all books with:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+  - Title
+  - Author
+  - Genre
+  - ISBN
+  - Copies
+  - Availability
+  - Actions (Edit, Delete, Borrow)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Edit Book**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+  - Opens a form pre-filled with existing book info
+  - Supports full update with optimistic UI
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Delete Book**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  - Prompts confirmation before deletion
+  - Uses optimistic update for instant UI response
+
+- **Add New Book**
+
+  - Form to add a new book with:
+    - Title, Author, Genre, ISBN, Description, Copies
+  - Defaults to available = true
+  - Redirects to book list after creation
+
+- **Availability Logic**
+  - A book becomes **unavailable** if copies reach 0
+
+---
+
+### 📦 Borrowing
+
+- **Borrow Book**
+
+  - Opens from each book's action menu
+  - Fields: Quantity, Due Date (calendar)
+  - Quantity cannot exceed available copies
+  - Updates availability instantly
+  - Redirects to borrow summary after success
+
+- **Borrow Summary**
+  - Shows aggregate data of borrowed books:
+    - Title, ISBN, Total Quantity Borrowed
+  - Pulled via aggregation API
+
+---
+
+### 🧭 Navigation
+
+- Simple navbar with links to:
+
+  - 📚 All Books
+  - ➕ Add Book
+  - 📈 Borrow Summary
+
+- Responsive design with dropdown for mobile
+
+---
+
+### 🦶 Footer
+
+- Clean footer with copyright
+- Built with ❤️ by the developer
+
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React, TypeScript
+- **Styling:** Tailwind CSS, [shadcn/ui](https://ui.shadcn.com/)
+- **State Management:** Redux Toolkit Query
+- **Form Handling:** React Hook Form + Zod
+- **Date UI:** date-fns + calendar component
+- **Notifications:** sonner
+- **Backend:** RESTful API (external, not included here)
+- **Deployment:** [Vercel](https://vercel.com)
+
+---
+
+## 🧪 Optimistic Updates
+
+- ⚡ Instant UI feedback on delete/edit
+- 🌀 Rollback handled automatically on failure
+- Clean cache management using `updateQueryData` from RTK Query
+
+---
+
+## 📂 Folder Structure (Simplified)
