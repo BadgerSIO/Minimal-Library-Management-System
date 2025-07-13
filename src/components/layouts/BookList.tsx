@@ -10,7 +10,7 @@ const BookList = () => {
   const books: IBook[] = bookdata?.data;
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className="text-center my-5">Loading...</div>;
   }
   if (!books || books.length === 0) {
     return <div>No books available.</div>;

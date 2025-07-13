@@ -6,6 +6,9 @@ const BorrowSummary = () => {
   const { isLoading, data: borrowData } = useGetBorrowSummaryQuery(undefined, {
     refetchOnFocus: true,
   });
+  if (isLoading) {
+    return <div className="text-center my-5">Loading...</div>;
+  }
   return (
     <section className="min-h-[calc(100vh-165px)] md:min-h-[calc(100vh-205px)] pt-10 pb-5">
       <div className="container mx-auto">
