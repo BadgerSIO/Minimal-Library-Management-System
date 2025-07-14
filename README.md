@@ -98,7 +98,3 @@ A minimal, modern **Library Management System** built with **React**, **TypeScri
 - ⚡ Instant UI feedback on delete/edit
 - 🌀 Rollback handled automatically on failure
 - Clean cache management using `updateQueryData` from RTK Query
-
----
-
-## 📂 Folder Structure (Simplified)
